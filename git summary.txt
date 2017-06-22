@@ -38,10 +38,13 @@ $ git branch -v
 查看所有分支：
 $ git branch -a
 
-查看分支状态：
+查看当前分支状态
+$ git status
+
+查看远程分支状态：
 $ git remote show origin
 
-同步分支状态：
+同步远程分支状态：
 $ git remote prune origin
 
 复制当前版本，新建本地分支：
@@ -98,4 +101,14 @@ $ git fetch origin <remote branchName>
 2.合并远程分支到当前分支
 $ git merge <remote branchName>
 
-$ git log -p master origin/master
+
+查看日志
+$ git log
+
+移除版本控制
+0.如果有需要编辑.gitignore
+1.递归(-r)查看并不真正删除(-n)指定文件
+$ git rm -r -n --cached <filename>
+2.递归删除追踪状态
+$ git rm -r --cached <filename>
+3.commit & push
