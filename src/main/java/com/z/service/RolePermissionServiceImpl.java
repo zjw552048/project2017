@@ -12,10 +12,10 @@ import com.z.dao.RolePermissionMapper;
 public class RolePermissionServiceImpl implements RolePermissionService{
 	@Autowired
 	RolePermissionMapper dao;
-	
+
 	@Override
 	public List<String> selectPermissionByRoleIdList(List<String> roleIdList) {
 		return dao.selectPermissionByRoleIdList(roleIdList);
 	}
-
+	
 }
