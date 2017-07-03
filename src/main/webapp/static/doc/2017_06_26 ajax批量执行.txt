@@ -1,0 +1,26 @@
+批量执行ajax，完成后执行逻辑
+
+有顺序（jquery1.8以上用then，1.8以下用pipe）
+ $.ajax({url:url1,dataType:'json'})
+    .then(function(data){
+        responseDatas.push(data);
+    })
+    .then($.ajax({url:url2,dataType:'json'}))
+    .then(function(data){
+        responseDatas.push(data); 
+    })
+    .then($.ajax({url:url3,dataType:'json'}))
+    .done(function(data){
+        responseDatas.push(data); 
+        dealWithResponseDatas(responseDatas);
+});
+
+没有顺序
+var data1, data2;
+var request1 = $.get(url1);
+var request2 = $.get(url2);
+request1.done(function(data){data1 = data;});
+request2.done(function(data){data2 = data;});
+$.when(request1,request2).done(function(){
+    console.log(data1,data2);
+});;

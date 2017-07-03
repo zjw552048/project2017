@@ -1,0 +1,17 @@
+###获取项目绝对路径
+1.非war包时
+request.getSession().getServletContext().getRealPath("/");
+2.war包时
+this.getClass().getClassLoader().getResource("/").getPath();
+
+###weblogic可能存在与自带jar包冲突的情况，需要配置优先使用项目jar包
+1.在项目/WEB-INF/路径下，创建一个weblogic.xml，添加如下内容：
+<?xml version="1.0" encoding="utf-8">
+<weblogic-web-app>
+	<container-descriptor>
+		<perfer-web-inf-classes>true</perfer-web-inf-classes>
+	</container-descriptor>
+</weblogic-web-app>
+
+###移除项目lib下xercesImpl-XXX.jar和xml-apis-XXX.jar
+
