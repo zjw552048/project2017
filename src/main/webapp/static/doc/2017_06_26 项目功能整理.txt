@@ -1,0 +1,21 @@
+0.配置项整理
+1.shiro权限管理
+2.session监听异地登陆/webSocket推送异地登陆
+3.AOP日志管理
+4.切点多数据源动态切换
+5.cas单点登录
+6.前后台分离，单页面模式
+7.mybatis别名，resultMap
+8.mybatis generator
+9.ajaxsetup dataFilter(返回值问题有待解决) complete
+10.activemq
+11.spring异常处理
+
+quartz 		计划任务组件
+dbeaver 	数据库软件
+docker		封装运行环境软件
+weblogic	服务器
+github		开发环境
+Markdown	文档标记语言
+
+StackOverFlow CSDN GitHub
