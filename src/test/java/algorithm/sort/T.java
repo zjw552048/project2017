@@ -21,10 +21,13 @@ public class T {
 //		System.out.println(Integer.toBinaryString(Integer.MIN_VALUE >> 2));
 //		System.out.println();
 //		System.out.println(Integer.toBinaryString((Integer.MIN_VALUE >> 31) & 1));
-		
-		
-		int[] orginal = new int[]{5,888,4,2,6,7,3,10,567,456,234,123,66666,55555,3333333,8908764};
-		System.out.println(Arrays.toString(sort(orginal)));
+		int max = 10000000;
+		int size = 32;
+		double arrayLength = max/size + (max%size==0?0:1);
+		System.out.println(arrayLength);
+		System.out.println(arrayLength*4/1024/1024);
+//		int[] orginal = new int[]{5,888,4,2,6,7,3,10,567,456,234,123,66666,55555,3333333,8908764};
+//		System.out.println(Arrays.toString(sort(orginal)));
 	}
 	
 	public static int[] sort(int[] orginal){
@@ -35,7 +38,7 @@ public class T {
 		int[] result = new int[orginal.length];
 		
 		for(int i=0;i<orginal.length;i++){
-			int index = orginal[i]/size + (orginal[i]%size==0?0:1) - 1;
+			int index = orginal[i]/size + (orginal[i]%size==0?-1:0);
 			int pos = (orginal[i]%size==0?32:orginal[i]%size);
 			datas[index] = datas[index] | (1 << pos-1);
 			//System.out.println(Arrays.toString(datas));
