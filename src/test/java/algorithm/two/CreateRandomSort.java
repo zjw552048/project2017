@@ -1,32 +1,63 @@
 package algorithm.two;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+
 
 public class CreateRandomSort {
 	public static void main(String[] args) {
-		sort(5,10);
+		//System.out.println(Math.pow(2, 32));
+		int m = 5;
+		int n = (int)Math.pow(2, 20);
+		System.out.println(Arrays.toString(sort(m, n)));
+		System.out.println(sort2(m, n));
 	}
 	
 	/**
-	 * 返回在[0,n-1]范围内选出m个元素不重复的、元素有序的数组
+	 * 从0~n-1随机输出m个有序整数
+	 * 且m>n
 	 * @param m
 	 * @param n
 	 * @return
 	 */
 	public static int[] sort(int m, int n){
+		long start = System.currentTimeMillis();
+		
 		int[] result = new int[m];
-		for(int i=0;i<n;i++){
+		int temp = n;
+		for(int i=0;i<temp;i++){
 			int random = (int)(Math.random()*1000);
-			System.out.println(random);
-			int value = random%n;
-			System.out.println("value:"+value+",m:"+m+",n:"+n);
+			int value = random%(n-i);
 			if(value<m){
-				result[result.length-m] = n;
-				System.out.println(Arrays.toString(result));
+				result[result.length-m] = i;
 				m--;
-				n--;
 			}
 		}
+		
+		long end = System.currentTimeMillis();
+		System.out.println(end-start);
 		return result; 
+	}
+	
+	public static List<Integer> sort2(int m, int n){
+		long start = System.currentTimeMillis();
+		
+		List<Integer> result = new ArrayList<Integer>();
+		while(m>0){
+			Integer random = (int)(Math.random()*n);
+			boolean flag = result.contains(random);
+			if(!flag){
+				result.add(random);
+				m--;
+			}
+		}
+		Collections.sort(result);
+		
+		long end = System.currentTimeMillis();
+		System.out.println(end-start);
+		return result;
 	}
 }
