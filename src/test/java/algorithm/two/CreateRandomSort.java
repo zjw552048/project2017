@@ -10,10 +10,14 @@ import java.util.List;
 public class CreateRandomSort {
 	public static void main(String[] args) {
 		//System.out.println(Math.pow(2, 32));
-		int m = 5;
+		int m = 100;
 		int n = (int)Math.pow(2, 20);
-		System.out.println(Arrays.toString(sort(m, n)));
-		System.out.println(sort2(m, n));
+		int times = 20;
+		while(times>0){
+			System.out.println(Arrays.toString(sort(m, n)));
+			System.out.println(sort2(m, n));
+			times--;
+		}
 	}
 	
 	/**
@@ -29,7 +33,7 @@ public class CreateRandomSort {
 		int[] result = new int[m];
 		int temp = n;
 		for(int i=0;i<temp;i++){
-			int random = (int)(Math.random()*1000);
+			int random = (int)(Math.random()*(n-i));
 			int value = random%(n-i);
 			if(value<m){
 				result[result.length-m] = i;
