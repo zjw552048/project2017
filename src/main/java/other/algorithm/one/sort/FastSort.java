@@ -1,4 +1,4 @@
-package algorithm.sort;
+package other.algorithm.one.sort;
 
 public class FastSort {
 	/**
