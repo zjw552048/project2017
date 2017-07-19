@@ -16,7 +16,7 @@ public class MyHandshakeInterceptor extends HttpSessionHandshakeInterceptor{
             ServerHttpResponse response, WebSocketHandler wsHandler,  
             Map<String, Object> attributes) throws Exception {  
         System.out.println("Before Handshake......");
-        //TODO ÒÔÏÂÄÚÈİÄ£·Â¸¸Àà
+      //TODO ä»¥ä¸‹å†…å®¹æ¨¡ä»¿çˆ¶ç±»
         if(request instanceof ServletServerHttpRequest){
         	ServletServerHttpRequest servletRequest = (ServletServerHttpRequest)request;
         	HttpSession session = servletRequest.getServletRequest().getSession(false);
@@ -25,18 +25,18 @@ public class MyHandshakeInterceptor extends HttpSessionHandshakeInterceptor{
         		attributes.put("WS_sysUserId", sysUserId);
         		attributes.put("HttpSession", session);
 //        		//TODO
-//        		Map map = HttpSessionMapUtil.getInstance().showHttpSessionMap();
-//        		HttpSession oldSession = HttpSessionMapUtil.getInstance().getHttpSession(sysUserId);
-//        		if(oldSession==null){
-//        		    //Î´µÇÂ½¹ı
-//        		    HttpSessionMapUtil.getInstance().putHttpSession(sysUserId, session);
-//        		}else if(oldSession!=null && oldSession.getId().equals(session.getId())){
-//        		    //Í¬Ò»¸öä¯ÀÀÆ÷
-//        		}else{
-//        		    //²»Í¬ä¯ÀÀÆ÷
-//        		    SecurityUtils.getSecurityManager().logout(arg0);
-//        		    HttpSessionMapUtil.getInstance().putHttpSession(sysUserId, session);
-//        		}
+//              Map map = HttpSessionMapUtil.getInstance().showHttpSessionMap();
+//              HttpSession oldSession = HttpSessionMapUtil.getInstance().getHttpSession(sysUserId);
+//              if(oldSession==null){
+//                  //æœªç™»é™†è¿‡
+//                  HttpSessionMapUtil.getInstance().putHttpSession(sysUserId, session);
+//              }else if(oldSession!=null && oldSession.getId().equals(session.getId())){
+//                  //åŒä¸€ä¸ªæµè§ˆå™¨
+//              }else{
+//                  //ä¸åŒæµè§ˆå™¨
+//                  SecurityUtils.getSecurityManager().logout(arg0);
+//                  HttpSessionMapUtil.getInstance().putHttpSession(sysUserId, session);
+//              }
         	}
         }
         

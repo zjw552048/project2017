@@ -7,7 +7,7 @@ import com.z.entity.common.ShiroUser;
 
 public class ShiroUtils {
 	/**
-	 * »ñÈ¡µ±Ç°µÇÂ¼µÄÈÏÖ¤ÊµÌå
+	 * è·å–å½“å‰ç™»å½•çš„è®¤è¯å®ä½“
 	 * @author ZhangJiawei
 	 * @return
 	 */
@@ -17,7 +17,7 @@ public class ShiroUtils {
 	}
 	
 	/**
-	 * »ñÈ¡µ±Ç°ÈÏÖ¤ÊµÌåµÄÓÃ»§¶ÔÏó
+	 * è·å–å½“å‰è®¤è¯å®ä½“çš„ç”¨æˆ·å¯¹è±¡
 	 * @author ZhangJiawei
 	 * @return
 	 */

@@ -11,7 +11,7 @@ import net.sf.json.JSONObject;
 
 public class WSSendMessageUtil {
 	/**
-	 * ·â×°·µ»Ø·½·¨
+	 * å°è£…è¿”å›æ–¹æ³•
 	 * @author ZhangJiawei
 	 * @param methodName
 	 * @param parameter
@@ -25,7 +25,7 @@ public class WSSendMessageUtil {
 		return data.toString();
 	}
 	/**
-     * ¸øÄ³¸öÓÃ»§·¢ËÍÏûÏ¢ apply
+     * ç»™æŸä¸ªç”¨æˆ·å‘é€æ¶ˆæ¯ apply
      *
      * @param userName
      * @param message
@@ -45,7 +45,7 @@ public class WSSendMessageUtil {
     }
     
     /**
-     * ¸øËùÓĞÔÚÏßÓÃ»§·¢ËÍÏûÏ¢
+     * ç»™æ‰€æœ‰åœ¨çº¿ç”¨æˆ·å‘é€æ¶ˆæ¯
      *
      * @param message
      */

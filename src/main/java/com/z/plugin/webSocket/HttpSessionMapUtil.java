@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 
 
 /**
- * WSÁ¬½ÓHttpSessionÎ¬»¤¹¤¾ßÀà
+ * WSè¿æ¥HttpSessionç»´æŠ¤å·¥å…·ç±»
  * @author ZhangJiawei
  *
  */
@@ -26,7 +26,7 @@ public class HttpSessionMapUtil {
 	}
 	
 	/**
-	 * »ñÈ¡µ¥Àı·½·¨
+	 * è·å–å•ä¾‹æ–¹æ³•
 	 * @author ZhangJiawei
 	 * @return
 	 */
@@ -37,7 +37,7 @@ public class HttpSessionMapUtil {
 		return instance;
 	}
 	/**
-	 * ĞÂÔö
+	 * æ–°å¢
 	 * @author ZhangJiawei
 	 * @param sysUserId
 	 * @param session
@@ -46,7 +46,7 @@ public class HttpSessionMapUtil {
 		httpSessionMap.put(sysUserId, session);
 	}
 	/**
-	 * É¾³ı
+	 * åˆ é™¤
 	 * @author ZhangJiawei
 	 * @param sysUserId
 	 */
@@ -54,7 +54,7 @@ public class HttpSessionMapUtil {
 		httpSessionMap.remove(sysUserId);
 	}
 	/**
-	 * »ñÈ¡
+	 * è·å–
 	 * @author ZhangJiawei
 	 * @param sysUserId
 	 * @return
@@ -63,7 +63,7 @@ public class HttpSessionMapUtil {
 		return httpSessionMap.get(sysUserId);
 	}
 	/**
-	 * ·µ»Øµ±Ç°ÔÚÏßÊıÁ¿
+	 * è¿”å›å½“å‰åœ¨çº¿æ•°é‡
 	 * @author ZhangJiawei
 	 * @return
 	 */
@@ -71,7 +71,7 @@ public class HttpSessionMapUtil {
 		return httpSessionMap.size();
 	}
 	/**
-	 * ·µ»ØÁ¬½Ó¼¯ºÏ
+	 * è¿”å›è¿æ¥é›†åˆ
 	 * @author ZhangJiawei
 	 * @return
 	 */
@@ -79,7 +79,7 @@ public class HttpSessionMapUtil {
 		return (List<HttpSession>) httpSessionMap.values();
 	}
 	/**
-	 * ·µ»Øµ±Ç°map
+	 * è¿”å›å½“å‰map
 	 * @author ZhangJiawei
 	 * @return
 	 */
@@ -91,7 +91,4 @@ public class HttpSessionMapUtil {
 		}
 		return httpSessionMap;
 	}
-	
-	
-	
 }

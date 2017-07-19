@@ -14,7 +14,7 @@ import org.apache.shiro.web.util.WebUtils;
 public class URLPermissionsAuthorizationFilter extends PermissionsAuthorizationFilter{
 	
 	/** 
-     * ¸ù¾İÇëÇóURL²úÉúÈ¨ÏŞ×Ö·û´®£¬ÕâÀïÖ»²úÉú£¬¶ø±È¶ÔµÄÊÂ½»¸øRealm 
+     * æ ¹æ®è¯·æ±‚URLäº§ç”Ÿæƒé™å­—ç¬¦ä¸²ï¼Œè¿™é‡Œåªäº§ç”Ÿï¼Œè€Œæ¯”å¯¹çš„äº‹äº¤ç»™Realm  
      * @param request 
      * @return 
      */  
@@ -24,7 +24,7 @@ public class URLPermissionsAuthorizationFilter extends PermissionsAuthorizationF
         String path = req.getServletPath();
         
         /*
-         *  Èç¹ûĞèÒª·Ö¼¶ÔõÃ´ÀûÓÃÕıÔò£¬·ÖÀëcontrollerºÍaction
+         *  å¦‚æœéœ€è¦åˆ†çº§æ€ä¹ˆåˆ©ç”¨æ­£åˆ™ï¼Œåˆ†ç¦»controllerå’Œaction
          *	String regex = "/(.*?)/(.*?)\\.(.*)";
          *  if(path.matches(regex)){
          *  	Pattern pattern = Pattern.compile(regex); 
@@ -33,12 +33,12 @@ public class URLPermissionsAuthorizationFilter extends PermissionsAuthorizationF
          *  	String action = matcher.group(2); 
          *  }
          */
-        //pathÖ±½Ó×÷ÎªÈ¨ÏŞ×Ö·û´®  
+        //pathç›´æ¥ä½œä¸ºæƒé™å­—ç¬¦ä¸²  
         perms[0] = path;
         return perms;  
     }
     /**
-     * ¸ù¾İÉú³ÉµÄÈ¨ÏŞ×Ö·û´®½»¸ø¸¸Àà·½·¨£¬ÅĞ¶ÏÊÇ·ñÓµÓĞÈ¨ÏŞ
+     * æ ¹æ®ç”Ÿæˆçš„æƒé™å­—ç¬¦ä¸²äº¤ç»™çˆ¶ç±»æ–¹æ³•ï¼Œåˆ¤æ–­æ˜¯å¦æ‹¥æœ‰æƒé™
      */
     @Override
     public boolean isAccessAllowed(ServletRequest request,  
@@ -46,7 +46,7 @@ public class URLPermissionsAuthorizationFilter extends PermissionsAuthorizationF
          return super.isAccessAllowed(request, response, buildPermissions(request));  
     } 
     /**
-     * µ±Ã»ÓĞÈ¨ÏŞÊ±
+     * å½“æ²¡æœ‰æƒé™æ—¶
      */
 	@Override
 	protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws IOException {
@@ -55,30 +55,30 @@ public class URLPermissionsAuthorizationFilter extends PermissionsAuthorizationF
 		
 		Subject subject = getSubject(request, response);
 		if(subject.getPrincipal() == null){
-			//Î´µÇÂ¼
-			if(isAjax){
-				//ÎŞPrincipalµÄajaxÇëÇó,ÏòÓÎÀÀÆ÷·µ»Ø´íÎó´úÂë
-				WebUtils.toHttp(response).sendError(490);
-			}else{
-				//ÎŞPrincipalµÄÆÕÍ¨ÇëÇó£¬Ö±½ÓÖØ¶¨Ïòµ½µÇÂ¼Ò³Ãæ
-				saveRequestAndRedirectToLogin(request, response);
-			}
+            //æœªç™»å½•
+            if(isAjax){
+                //æ— Principalçš„ajaxè¯·æ±‚,å‘æ¸¸è§ˆå™¨è¿”å›é”™è¯¯ä»£ç 
+                WebUtils.toHttp(response).sendError(490);
+            }else{
+                //æ— Principalçš„æ™®é€šè¯·æ±‚ï¼Œç›´æ¥é‡å®šå‘åˆ°ç™»å½•é¡µé¢
+                saveRequestAndRedirectToLogin(request, response);
+            }
         }else{
-        	//ÒÑµÇÂ¼
-        	if(isAjax){
-        		//ÓĞPrincipalµÄajaxÇëÇó£¬ÏëÓÎÀÀÆ÷·µ»Ø´íÎó´úÂë
-        		WebUtils.toHttp(response).sendError(491);
-        	}else{
-        		//ÒÔÏÂ²Î¿¼AuthorizationFilterÀà
-        		String unauthorizedUrl = getUnauthorizedUrl();
-            	if(StringUtils.hasText(unauthorizedUrl)){
-            		//µ±Éè¶¨¹ıÔ½È¨Ò³ÃæÊ±£¬Ìø×ªÖÁµÇÂ¼Ò³Ãæ
-            		WebUtils.issueRedirect(request, response, unauthorizedUrl);
-            	}else{
-            		//Î´Éè¶¨Ô½È¨Ò³ÃæÊ±£¬·µ»Ø´íÎó´úÂë
-            		WebUtils.toHttp(response).sendError(401);
-            	}
-        	}
+            //å·²ç™»å½•
+            if(isAjax){
+                //æœ‰Principalçš„ajaxè¯·æ±‚ï¼Œæƒ³æ¸¸è§ˆå™¨è¿”å›é”™è¯¯ä»£ç 
+                WebUtils.toHttp(response).sendError(491);
+            }else{
+                //ä»¥ä¸‹å‚è€ƒAuthorizationFilterç±»
+                String unauthorizedUrl = getUnauthorizedUrl();
+                if(StringUtils.hasText(unauthorizedUrl)){
+                    //å½“è®¾å®šè¿‡è¶Šæƒé¡µé¢æ—¶ï¼Œè·³è½¬è‡³ç™»å½•é¡µé¢
+                    WebUtils.issueRedirect(request, response, unauthorizedUrl);
+                }else{
+                    //æœªè®¾å®šè¶Šæƒé¡µé¢æ—¶ï¼Œè¿”å›é”™è¯¯ä»£ç 
+                    WebUtils.toHttp(response).sendError(401);
+                }
+            }
         }
         return false;
 	}

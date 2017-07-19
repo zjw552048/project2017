@@ -1,6 +1,6 @@
 package com.z.annotation;
 /**
- * mybatisDAO²ã±ê¼Ç×¢½â
+ * mybatisDAOå±‚æ ‡è®°æ³¨è§£
  * @author ZhangJiawei
  *
  */

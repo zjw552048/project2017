@@ -1,7 +1,7 @@
 package com.z.entity.common;
 
 /**
- * 分页查询封装对象
+ * 鍒嗛〉鏌ヨ灏佽瀵硅薄
  * @author ZhangJiawei
  *
  */

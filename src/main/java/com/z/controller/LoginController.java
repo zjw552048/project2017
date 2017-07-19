@@ -32,7 +32,7 @@ public class LoginController {
 	private final static Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
 	/**
-	 * ×ª·¢ÑéÖ¤µÇÂ½Ò³Ãæ
+	 * è½¬å‘éªŒè¯ç™»é™†é¡µé¢
 	 * @author ZhangJiawei
 	 * @return
 	 */
@@ -45,34 +45,34 @@ public class LoginController {
 	    }
 	}
 	/**
-	 * ÑéÖ¤µÇÂ½
-	 * @author ZhangJiawei
-	 * @param username	µ±Ç°ÓÃ»§Ãû
-	 * @param password	ÓÃ»§ÃÜÂë
-	 * @param imgCode	ÓÃ»§ÊäÈëµÄÑéÖ¤Âë
-	 * @param session	
-	 * @param response
-	 * @return
-	 */
+     * éªŒè¯ç™»é™†
+     * @author ZhangJiawei
+     * @param username  å½“å‰ç”¨æˆ·å
+     * @param password  ç”¨æˆ·å¯†ç 
+     * @param imgCode   ç”¨æˆ·è¾“å…¥çš„éªŒè¯ç 
+     * @param session   
+     * @param response
+     * @return
+     */
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> login(String username, String password,
 		   String verificationCode, String remenber, HttpSession session, 
 		   HttpServletResponse response){
-		//ÅĞ¶ÏĞÅÏ¢ÊÇ·ñÍêÕû
-	    //TODO ×¢ÊÍÑéÖ¤Âë
-//		String sessionCaptcha = (String) session.getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
-//		if(!sessionCaptcha.equals(verificationCode)){
-//			return ResponseUtils.error("ÑéÖ¤Âë´íÎó£¡");
-//		}
+		//åˆ¤æ–­ä¿¡æ¯æ˜¯å¦å®Œæ•´
+        //TODO æ³¨é‡ŠéªŒè¯ç 
+//      String sessionCaptcha = (String) session.getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
+//      if(!sessionCaptcha.equals(verificationCode)){
+//          return ResponseUtils.error("éªŒè¯ç é”™è¯¯ï¼");
+//      }
 		if(StringUtils.isEmpty(username)){
-			return ResponseUtils.error("ÓÃ»§Ãû´íÎó£¡");
+			return ResponseUtils.error("ç”¨æˆ·åé”™è¯¯ï¼");
 		}
 		if(StringUtils.isEmpty(password)){
-			return ResponseUtils.error("ÃÜÂë´íÎó£¡");
+			return ResponseUtils.error("å¯†ç é”™è¯¯ï¼");
 		}
 		
-		//¼Ç×¡token
+		//è®°ä½token
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 		if(remenber!=null){
@@ -80,32 +80,32 @@ public class LoginController {
 		}
 		
 		try {
-			logger.debug("ÓÃ»§£º"+username+"³¢ÊÔµÇÂ½¡£¡£¡£");
+			logger.debug("ç”¨æˆ·ï¼š"+username+"å°è¯•ç™»é™†ã€‚ã€‚ã€‚");
 			subject.login(token);
 			SysUser sysUser = ShiroUtils.getSysUser();
-			//session»º´æÓÃ»§ĞÅÏ¢
+			//sessionç¼“å­˜ç”¨æˆ·ä¿¡æ¯
 			session.setAttribute("SESSION_sysUserId", sysUser.getId());
 			LogUtils.saveLog(sysUser.getId());
-			logger.debug("ÓÃ»§£º"+username+"ÒÑµÇÂ½");
-		} catch (UnknownAccountException e) {
-			logger.error("ÕËºÅ²»´æÔÚ£¡", e);
-			return ResponseUtils.error("ÕËºÅ²»´æÔÚ£¡");
-		} catch (DisabledAccountException e) {
-			logger.error("ÕËºÅÎ´ÆôÓÃ£¡", e);
-			return ResponseUtils.error("ÕËºÅÎ´ÆôÓÃ£¡");
-		} catch (IncorrectCredentialsException e) {
-			logger.error("ÃÜÂë´íÎó£¡", e);
-			return ResponseUtils.error("ÃÜÂë´íÎó£¡");
-		} catch (RuntimeException e) {
-			logger.error("Î´Öª´íÎó,ÇëÁªÏµ¹ÜÀíÔ±£¡", e);
-			return ResponseUtils.error("Î´Öª´íÎó,ÇëÁªÏµ¹ÜÀíÔ±£¡");
-		}
-		return ResponseUtils.success("");
+			logger.debug("ç”¨æˆ·ï¼š"+username+"å·²ç™»é™†");
+        } catch (UnknownAccountException e) {
+            logger.error("è´¦å·ä¸å­˜åœ¨ï¼", e);
+            return ResponseUtils.error("è´¦å·ä¸å­˜åœ¨ï¼");
+        } catch (DisabledAccountException e) {
+            logger.error("è´¦å·æœªå¯ç”¨ï¼", e);
+            return ResponseUtils.error("è´¦å·æœªå¯ç”¨ï¼");
+        } catch (IncorrectCredentialsException e) {
+            logger.error("å¯†ç é”™è¯¯ï¼", e);
+            return ResponseUtils.error("å¯†ç é”™è¯¯ï¼");
+        } catch (RuntimeException e) {
+            logger.error("æœªçŸ¥é”™è¯¯,è¯·è”ç³»ç®¡ç†å‘˜ï¼", e);
+            return ResponseUtils.error("æœªçŸ¥é”™è¯¯,è¯·è”ç³»ç®¡ç†å‘˜ï¼");
+        }
+        return ResponseUtils.success("");
 		
 	}
 	
 	/**
-	 * ×ª·¢Ö÷Ò³Ãæ
+	 * è½¬å‘ä¸»é¡µé¢
 	 * @author ZhangJiawei
 	 * @return
 	 */
@@ -115,7 +115,7 @@ public class LoginController {
 	}
 	
 	/**
-	 * ÖØ¶¨ÏòµÇ³öÒ³Ãæ
+	 * é‡å®šå‘ç™»å‡ºé¡µé¢
 	 * @author ZhangJiawei
 	 * @param request
 	 * @return
@@ -123,19 +123,19 @@ public class LoginController {
 	 */
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request) throws IOException{
-		//×¢Ïúshiro subject
+		//æ³¨é”€shiro subject
 	    SysUser sysUser = ShiroUtils.getSysUser();
 	    
 		Subject subject = SecurityUtils.getSubject();
 		subject.logout();
 		if(sysUser!=null){
 		    LogUtils.saveLog(sysUser.getId());
-	        logger.debug("ÓÃ»§£º"+sysUser.getUsername()+"ÒÑÍË³ö");
+		    logger.debug("ç”¨æˆ·ï¼š"+sysUser.getUsername()+"å·²é€€å‡º");
 		}
 		return "redirect:/login";
 	} 
 	/**
-	 * ×ª·¢ÎŞÈ¨ÏŞÒ³Ãæ
+	 * è½¬å‘æ— æƒé™é¡µé¢
 	 * @author ZhangJiawei
 	 * @return
 	 */

@@ -25,7 +25,7 @@ import com.z.service.SysUserService;
 import com.z.service.UserRoleService;
 
 /**
- * Í¨¹ıÓÃ»§Ãû²éÑ¯ÕıÈ·µÄÓÃ»§ĞÅÏ¢£¬·â×°ÁîÅÆ£¬shiroÅĞ¶ÏµÇÂ½ÊÇ·ñ³É¹¦
+ * é€šè¿‡ç”¨æˆ·åæŸ¥è¯¢æ­£ç¡®çš„ç”¨æˆ·ä¿¡æ¯ï¼Œå°è£…ä»¤ç‰Œï¼Œshiroåˆ¤æ–­ç™»é™†æ˜¯å¦æˆåŠŸ
  * @author ZhangJiawei
  *
  */
@@ -42,13 +42,13 @@ public class ShiroDBRealm extends AuthorizingRealm{
 	RolePermissionService rolePermissionService;
 	
 	/**
-	 * Shiro»ñÈ¡Éí·İÑéÖ¤ĞÅÏ¢
-	 * shiroÅĞ¶ÏÓÃ»§µÇÂ¼ÊÇ·ñÍ¨¹ı
+	 * Shiroè·å–èº«ä»½éªŒè¯ä¿¡æ¯
+	 * shiroåˆ¤æ–­ç”¨æˆ·ç™»å½•æ˜¯å¦é€šè¿‡
 	 */
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-		logger.debug("Shiro¿ªÊ¼µÇÂ¼ÈÏÖ¤ÓÃ»§:"+token.getUsername());
+		logger.debug("Shiroå¼€å§‹ç™»å½•è®¤è¯ç”¨æˆ·:"+token.getUsername());
 		SysUser sysUser = sysUserService.selectSysUserByUsername(token.getUsername());
 		if(sysUser==null){
 			throw new UnknownAccountException();
@@ -59,15 +59,15 @@ public class ShiroDBRealm extends AuthorizingRealm{
 		List<String> permissionList = rolePermissionService.selectPermissionByRoleIdList(roleIdList);
 		ShiroUser shiroUser = new ShiroUser(sysUser,roleIdList,permissionList);
 		
-		//·µ»ØÓÉÓÃ»§ÃûÈ·¶¨µÄ°²È«ÁîÅÆ£¬°üº¬ÓÃ»§Ãû¡¢ÃÜÂë¡¢ÑÎ(¿ÉÑ¡Ïî)
-		logger.debug("ÈÏÖ¤Í¨¹ı£¬»º´æÓÃ»§£º"+sysUser.getUsername()+"ĞÅÏ¢");
+		//è¿”å›ç”±ç”¨æˆ·åç¡®å®šçš„å®‰å…¨ä»¤ç‰Œï¼ŒåŒ…å«ç”¨æˆ·åã€å¯†ç ã€ç›(å¯é€‰é¡¹)
+		logger.debug("è®¤è¯é€šè¿‡ï¼Œç¼“å­˜ç”¨æˆ·ï¼š"+sysUser.getUsername()+"ä¿¡æ¯");
 		return new SimpleAuthenticationInfo(shiroUser, sysUser.getPassword(),getName());
 	}
 	
 	/**
-	 * ShiroÊÚÈ¨ĞÅÏ¢£¬ÅĞ¶ÏÓÃ»§ÊÇ·ñÓµÓĞÈ¨ÏŞ
-	 * È¨ÏŞ½ÇÉ«Ó¦¸ÃÔÚ´Ë·½·¨ÖĞ±»Èû½øAuthorizationInfo
-	 * Ö»²»¹ıÒÑ¾­±»·â×°ÔÚshiroUserÖĞ£¬Ö±½Ó»ñÈ¡¼´¿É
+	 * Shiroæˆæƒä¿¡æ¯ï¼Œåˆ¤æ–­ç”¨æˆ·æ˜¯å¦æ‹¥æœ‰æƒé™
+     * æƒé™è§’è‰²åº”è¯¥åœ¨æ­¤æ–¹æ³•ä¸­è¢«å¡è¿›AuthorizationInfo
+     * åªä¸è¿‡å·²ç»è¢«å°è£…åœ¨shiroUserä¸­ï¼Œç›´æ¥è·å–å³å¯
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {

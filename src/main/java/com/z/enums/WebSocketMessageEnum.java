@@ -1,12 +1,12 @@
 package com.z.enums;
 
 public class WebSocketMessageEnum {
-	//ÏòÇ°Ì¨·¢ËÍÌø×ªµÇÂ½Ò³ÃæĞÅÏ¢
+	//å‘å‰å°å‘é€è·³è½¬ç™»é™†é¡µé¢ä¿¡æ¯
 	public static final String ForcedOfflineMethod = "forcedOffline";
-	public static final String ForcedOfflineInfo = "ÄúµÄÕË»§ÒÑÔÚÒìµØµÇÂ½£¬Èô·Ç±¾ÈË²Ù×÷£¬ÇëÁªÏµ¹ÜÀíÔ±ĞŞ¸ÄÃÜÂë£¡";
-	//ÏòÇ°Ì¨·¢ËÍË¢ĞÂÒ³ÃæĞÅÏ¢
+	public static final String ForcedOfflineInfo = "ï¿½ï¿½ï¿½ï¿½ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½Â½ï¿½ï¿½ï¿½ï¿½ï¿½Ç±ï¿½ï¿½Ë²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ô±ï¿½Ş¸ï¿½ï¿½ï¿½ï¿½ë£¡";
+	//å‘å‰å°å‘é€åˆ·æ–°é¡µé¢ä¿¡æ¯
 	public static final String RefreshPageMethod = "refreshPage";
-	public static final String RefreshPageInfo = "ÄúµÄä¯ÀÀÆ÷ÒÑµÇÈëÆäËûÓÃ»§£¬¼´½«Ë¢ĞÂÒ³Ãæ£¡";
-	//ÏòÇ°Ì¨·¢ËÍÏûÏ¢
+	public static final String RefreshPageInfo = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¢ï¿½ï¿½Ò³ï¿½æ£¡";
+	//å‘å‰å°å‘é€æ¶ˆæ¯
 	public static final String ReceiveMessageMethod = "receiveMessage";
 }

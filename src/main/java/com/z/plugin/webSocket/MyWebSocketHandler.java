@@ -14,38 +14,36 @@ import com.z.enums.WebSocketMessageEnum;
 public class MyWebSocketHandler extends TextWebSocketHandler{
 	private static final Logger logger = Logger.getLogger(MyWebSocketHandler.class);
 	
-	
-	
 	/**
-     * Á¬½Ó³É¹¦Ê±ºò£¬»á´¥·¢Ò³ÃæÉÏonopen·½·¨
+     * è¿æ¥æˆåŠŸæ—¶å€™ï¼Œä¼šè§¦å‘é¡µé¢ä¸Šonopenæ–¹æ³•
      */
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws IOException{
-        //»ñÈ¡ÓÃ»§ĞÅÏ¢
+        //è·å–ç”¨æˆ·ä¿¡æ¯
         String sysUserId = getSysUserId(session);
         if(sysUserId==null){
             return;
         }
-        //»ñÈ¡¶ÔÓ¦µÄWSsession
+        //è·å–å¯¹åº”çš„WSsession
         WebSocketSession oldWSSession = WSSessionMapUtil.getInstance().getWebSocketSession(sysUserId);
         if(oldWSSession!=null && oldWSSession.isOpen()){
-            //Èç¹ûµ±Ç°WSÒÑ´æÔÚ£¬ÍÆËÍÒìµØµÇÂ½Í¨ÖªÏÂÏß
+            //å¦‚æœå½“å‰WSå·²å­˜åœ¨ï¼Œæ¨é€å¼‚åœ°ç™»é™†é€šçŸ¥ä¸‹çº¿
             WSSendMessageUtil.sendMessageToUser(sysUserId, 
                     WebSocketMessageEnum.ForcedOfflineMethod, 
                     WebSocketMessageEnum.ForcedOfflineInfo);
             oldWSSession.close();
         }
         while(oldWSSession==null || !oldWSSession.isOpen()){
-            //Ö±µ½oldWSSession±»¹Ø±Õ£¬ÔÙ¸üĞÂmap
+            //Ö±ç›´åˆ°oldWSSessionè¢«å…³é—­ï¼Œå†æ›´æ–°map
             WSSessionMapUtil.getInstance().putWebSocketSession(sysUserId, session);
             logger.debug("afterConnectionEstablished......");
-            logger.debug("ÓÃ»§£º"+sysUserId+" µÇÂ½³É¹¦£¬µ±Ç°ÔÚÏßÓÃ»§ÊıÁ¿£º"+WSSessionMapUtil.getInstance().getWebSocketSessionNumber());
+            logger.debug("ï¿½Ã»ï¿½ï¿½ï¿½"+sysUserId+" ï¿½ï¿½Â½ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"+WSSessionMapUtil.getInstance().getWebSocketSessionNumber());
             break;
         }
 	}
 	
 	/**
-     * Ò³Ãæjsµ÷ÓÃwebsocket.send(message)·¢ËÍÏûÏ¢£¬»áµ÷ÓÃ¸Ã·½·¨
+     * é¡µé¢jsè°ƒç”¨websocket.send(message)å‘é€æ¶ˆæ¯ï¼Œä¼šè°ƒç”¨è¯¥æ–¹æ³•
      */
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message) throws IOException{
@@ -56,26 +54,26 @@ public class MyWebSocketHandler extends TextWebSocketHandler{
 	}
 	
 	/**
-     * ¹Ø±ÕÁ¬½ÓÊ±´¥·¢£¬»á´¥·¢Ò³ÃæÉÏonclose·½·¨
+     * å…³é—­è¿æ¥æ—¶è§¦å‘ï¼Œä¼šè§¦å‘é¡µé¢ä¸Šoncloseæ–¹æ³•
      */
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus){
 		String sysUserId = getSysUserId(session);
 		WSSessionMapUtil.getInstance().removeWebSocketSession(sysUserId);
 		logger.debug("afterConnectionClosed......");
-		logger.debug("ÓÃ»§£º"+sysUserId+" ÒÑÏÂÏß£¬µ±Ç°ÔÚÏßÓÃ»§ÊıÁ¿£º"+WSSessionMapUtil.getInstance().getWebSocketSessionNumber());
+		logger.debug("ç”¨æˆ·ï¼š"+sysUserId+" å·²ä¸‹çº¿ï¼Œå½“å‰åœ¨çº¿ç”¨æˆ·æ•°é‡ï¼š"+WSSessionMapUtil.getInstance().getWebSocketSessionNumber());
 	}
 	
 	
 	@Override
 	public void handleTransportError(WebSocketSession session, Throwable exception) throws IOException{
         if(session.isOpen()){
-          //ÒÆ³ıÓÃ»§
+          //ç§»é™¤ç”¨æˆ·
           String sysUserId = getSysUserId(session);
           WSSessionMapUtil.getInstance().removeWebSocketSession(sysUserId);
           logger.debug("TransportError,websocket connection closed......");
-          logger.debug("ÓÃ»§£º"+sysUserId+" ÒÑÏÂÏß£¬µ±Ç°ÔÚÏßÓÃ»§ÊıÁ¿£º"+WSSessionMapUtil.getInstance().getWebSocketSessionNumber());
-          //session.close()¿ÉÄÜ»áÅ×³öÒì³£
+          logger.debug("ç”¨æˆ·ï¼š"+sysUserId+" å·²ä¸‹çº¿ï¼Œå½“å‰åœ¨çº¿ç”¨æˆ·æ•°é‡ï¼š"+WSSessionMapUtil.getInstance().getWebSocketSessionNumber());
+          //session.close()å¯èƒ½ä¼šæŠ›å‡ºå¼‚å¸¸
           session.close();
         }
 	}
@@ -86,7 +84,7 @@ public class MyWebSocketHandler extends TextWebSocketHandler{
     }
 	
 	/**
-	 * ¼òµ¥·â×°£¬»ñÈ¡WebSocketSessionÖĞµÄsysUserId
+	 * ç®€å•å°è£…ï¼Œè·å–WebSocketSessionä¸­çš„sysUserId
 	 * @author ZhangJiawei
 	 * @param session
 	 * @return
