@@ -37,7 +37,7 @@ public class MyWebSocketHandler extends TextWebSocketHandler{
             //ֱ直到oldWSSession被关闭，再更新map
             WSSessionMapUtil.getInstance().putWebSocketSession(sysUserId, session);
             logger.debug("afterConnectionEstablished......");
-            logger.debug("�û���"+sysUserId+" ��½�ɹ�����ǰ�����û�������"+WSSessionMapUtil.getInstance().getWebSocketSessionNumber());
+            logger.debug("用户："+sysUserId+" 已上线，当前在线用户数量："+WSSessionMapUtil.getInstance().getWebSocketSessionNumber());
             break;
         }
 	}

@@ -44,6 +44,7 @@ public class ShiroDBRealm extends AuthorizingRealm{
 	/**
 	 * Shiro获取身份验证信息
 	 * shiro判断用户登录是否通过
+	 * Authentication 身份认证
 	 */
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
@@ -68,6 +69,7 @@ public class ShiroDBRealm extends AuthorizingRealm{
 	 * Shiro授权信息，判断用户是否拥有权限
      * 权限角色应该在此方法中被塞进AuthorizationInfo
      * 只不过已经被封装在shiroUser中，直接获取即可
+     * Authorization 授权
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
